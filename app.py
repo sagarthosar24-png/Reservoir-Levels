@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 
 # --- 1. DATA TABLES ---
+# (Note: Ensure these arrays match your full technical spreadsheets)
 u_level_data = np.array([90.000, 90.025, 90.050, 90.075, 90.100, 90.125, 90.150, 90.175, 90.200, 90.225, 90.250, 90.275, 90.300, 90.325, 90.350, 90.375, 90.400, 90.425, 90.450, 90.475, 90.500, 90.525, 90.550, 90.575, 90.600, 90.625, 90.650, 90.675, 90.700, 90.725, 90.750, 90.775, 90.800, 90.825, 90.850, 90.875, 90.900, 90.925, 90.950, 90.975, 91.000, 91.025, 91.050, 91.075, 91.100, 91.125, 91.150, 91.175, 91.200, 91.225, 91.250, 91.275, 91.300, 91.325, 91.350, 91.375, 91.400, 91.425, 91.450, 91.475, 91.500, 91.525, 91.550, 91.575, 91.600, 91.625, 91.650, 91.675, 91.700, 91.725, 91.750, 91.775, 91.800, 91.825, 91.850, 91.875, 91.900, 91.925, 91.950, 91.975, 92.000, 92.025, 92.050, 92.075, 92.100, 92.125, 92.150, 92.175, 92.200, 92.225, 92.250, 92.275, 92.300, 92.325, 92.350, 92.375, 92.400, 92.425, 92.450, 92.475, 92.500, 92.525, 92.550, 92.575, 92.600, 92.625, 92.650, 92.675, 92.700, 92.725, 92.750, 92.775, 92.800, 92.825, 92.850, 92.875, 92.900, 92.925, 92.950, 92.975, 93.000, 93.025, 93.050, 93.075, 93.100, 93.125, 93.150, 93.175, 93.200, 93.225, 93.250, 93.275, 93.300, 93.325, 93.350, 93.375, 93.400, 93.425, 93.450, 93.475, 93.500, 93.525, 93.550, 93.575, 93.600, 93.625, 93.650, 93.675, 93.700, 93.725, 93.750, 93.775, 93.800, 93.825, 93.850, 93.875, 93.900, 93.925, 93.950, 93.975, 94.000, 94.025, 94.050, 94.075, 94.100, 94.125, 94.150, 94.175, 94.200, 94.225, 94.250, 94.275, 94.300, 94.325, 94.350, 94.375, 94.400, 94.425, 94.450, 94.475, 94.500, 94.525, 94.550, 94.575, 94.600, 94.625, 94.650, 94.675, 94.700, 94.725, 94.750, 94.775, 94.800, 94.825, 94.850, 94.875, 94.900, 94.925, 94.950, 94.975, 95.000])
 u_content_data = np.array([4.336, 4.354, 4.371, 4.389, 4.406, 4.424, 4.441, 4.459, 4.476, 4.494, 4.511, 4.529, 4.546, 4.564, 4.581, 4.599, 4.616, 4.634, 4.651, 4.669, 4.686, 4.704, 4.721, 4.739, 4.756, 4.774, 4.791, 4.809, 4.826, 4.844, 4.861, 4.879, 4.896, 4.914, 4.931, 4.949, 4.966, 4.984, 5.001, 5.019, 5.036, 5.054, 5.071, 5.089, 5.106, 5.124, 5.141, 5.159, 5.176, 5.194, 5.211, 5.229, 5.246, 5.264, 5.281, 5.299, 5.316, 5.334, 5.351, 5.369, 5.386, 5.404, 5.421, 5.439, 5.456, 5.474, 5.491, 5.509, 5.526, 5.544, 5.561, 5.579, 5.596, 5.614, 5.631, 5.649, 5.666, 5.684, 5.701, 5.719, 5.736, 5.756, 5.776, 5.796, 5.816, 5.836, 5.856, 5.876, 5.896, 5.916, 5.936, 5.956, 5.976, 5.997, 6.017, 6.037, 6.057, 6.077, 6.097, 6.117, 6.137, 6.157, 6.177, 6.197, 6.217, 6.237, 6.257, 6.278, 6.298, 6.318, 6.338, 6.354, 6.370, 6.390, 6.410, 6.434, 6.458, 6.478, 6.498, 6.519, 6.539, 6.559, 6.579, 6.599, 6.619, 6.639, 6.659, 6.679, 6.699, 6.719, 6.739, 6.759, 6.779, 6.800, 6.820, 6.840, 6.860, 6.880, 6.900, 6.920, 6.940, 6.960, 6.980, 7.000, 7.020, 7.040, 7.060, 7.081, 7.101, 7.121, 7.141, 7.161, 7.181, 7.201, 7.221, 7.241, 7.261, 7.281, 7.301, 7.322, 7.342, 7.368, 7.394, 7.411, 7.427, 7.448, 7.469, 7.491, 7.512, 7.524, 7.535, 7.596, 7.657, 7.708, 7.759, 7.811, 7.862, 7.913, 7.964, 8.016, 8.067, 8.118, 8.169, 8.220, 8.271, 8.323, 8.374, 8.425, 8.476, 8.528, 8.579, 8.630, 8.681, 8.733, 8.785, 8.836, 8.886, 8.937, 8.988, 9.035, 9.081])
 
@@ -9,101 +10,112 @@ l_level_data = np.array([89.000, 89.125, 89.250, 89.375, 89.500, 89.625, 89.750,
 l_content_data = np.array([2.870, 2.923, 2.975, 3.028, 3.080, 3.133, 3.185, 3.290, 3.304, 3.318, 3.331, 3.345, 3.359, 3.373, 3.386, 3.400, 3.430, 3.460, 3.490, 3.520, 3.550, 3.580, 3.610, 3.640, 3.671, 3.703, 3.734, 3.765, 3.796, 3.828, 3.859, 3.890, 3.906, 3.923, 3.939, 3.955, 3.971, 3.988, 4.004, 4.020, 4.049, 4.078, 4.106, 4.135, 4.164, 4.193, 4.221, 4.250, 4.279, 4.308, 4.336, 4.365, 4.394, 4.423, 4.451, 4.480, 4.503, 4.525, 4.548, 4.570, 4.593, 4.615, 4.638, 4.660, 4.683, 4.705, 4.728, 4.750, 4.773, 4.795, 4.818, 4.840, 4.866, 4.893, 4.919, 4.945, 4.971, 4.998, 5.024, 5.050, 5.161, 5.273, 5.384, 5.495, 5.606, 5.718, 5.829, 5.940])
 
 # --- 2. LAYOUT ---
-st.set_page_config(page_title="Shift Calculation Tool", layout="wide")
-st.title("⚡ Power Plant Operations")
+st.set_page_config(page_title="Dynamic Operation Planner", layout="wide")
+st.title("⚡ Dynamic Hydro Shift Calculator")
 
-# --- 3. INPUTS ---
-st.subheader("Current Shift Parameters")
+# --- 3. INPUT SECTION ---
+with st.sidebar:
+    st.header("Simulation Settings")
+    sim_hours = st.number_input("Shift Duration (Hours)", value=5.0, min_value=0.5, step=0.5)
+    time_step = st.selectbox("Precision (Time-Step)", [5, 10, 15], index=1)
+    st.caption("Lower minutes = Higher accuracy but more loops.")
+
 col1, col2 = st.columns(2)
 with col1:
-    st.markdown("### Upper Reservoir")
-    u_level_in = st.number_input("Upper RL (m)", value=94.450, step=0.001, format="%.3f")
-    gen_mus_in = st.number_input("Upper PH Generation (MUS)", value=0.120, step=0.001, format="%.3f")
+    st.subheader("Upper Lake Parameters")
+    u_start_rl = st.number_input("Starting RL (m)", value=94.450, step=0.001, format="%.3f")
+    u_gen_mus = st.number_input("Planned Generation (MUS)", value=0.895, step=0.001, format="%.3f")
+    u_conv = 0.820  # Constant: Discharge into lake per MUS
 with col2:
-    st.markdown("### Lower Reservoir")
-    l_level_in = st.number_input("Lower RL (m)", value=90.000, step=0.001, format="%.3f")
-    l_gen_mus_in = st.number_input("Lower PH Generation (MUS)", value=0.050, step=0.001, format="%.3f")
+    st.subheader("Lower Reservoir Parameters")
+    l_start_rl = st.number_input("Starting RL (m)", value=90.000, step=0.001, format="%.3f")
+    l_gen_mus = st.number_input("Lower PH Gen (MUS)", value=0.000, step=0.001, format="%.3f")
+    l_conv = 9.360  # Constant: Discharge out of reservoir per MUS
 
 st.divider()
-gate_is_open = st.toggle("Interconnecting Gate Open?", value=False)
-if gate_is_open:
-    hours_open = st.number_input("Hours Open (Hrs)", min_value=0.0, value=1.0, step=0.5)
-else:
-    hours_open = 0.0
-    st.info("Gate is CLOSED.")
+gate_is_open = st.toggle("Interconnecting Gate Open?", value=True)
 
-# --- 4. CALCULATION ---
-if st.button("Calculate Final Levels", type="primary"):
-    # Initial Data Fetch
-    idx_u_init = (np.abs(u_level_data - u_level_in)).argmin()
-    u_start_mcm = u_content_data[idx_u_init]
+# --- 4. CALCULATION ENGINE ---
+if st.button("Run Simulation", type="primary"):
+    # 1. Initialize Volumes
+    idx_u_init = (np.abs(u_level_data - u_start_rl)).argmin()
+    u_mcm = u_content_data[idx_u_init]
     
-    idx_l_init = (np.abs(l_level_data - l_level_in)).argmin()
-    l_start_mcm = l_content_data[idx_l_init]
-
-    # Constants
-    U_PH_CONV = 0.820
-    L_PH_CONV = 9.360 # MCM per MUS for Lower Power House
+    idx_l_init = (np.abs(l_level_data - l_start_rl)).argmin()
+    l_mcm = l_content_data[idx_l_init]
     
-    # 1. Immediate Generation Impacts
-    u_running_mcm = u_start_mcm + (gen_mus_in * U_PH_CONV)
-    l_running_mcm = l_start_mcm - (l_gen_mus_in * L_PH_CONV)
+    # 2. Convert Generation into Hourly Flow Rates
+    # Discharge into Upper Lake (MCM/hr)
+    u_inflow_rate = (u_gen_mus * u_conv) / sim_hours
+    # Discharge out of Lower Reservoir (MCM/hr)
+    l_outflow_rate = (l_gen_mus * l_conv) / sim_hours
     
-    # 2. Iterative Gate Transfer Loop
+    # 3. Time-Stepping Simulation
+    total_steps = int((sim_hours * 60) / time_step)
     gate_vol_total = 0.0
-    if gate_is_open and hours_open > 0:
-        total_min = int(hours_open * 60)
-        step_min = 10
+    
+    # Store history for graphing
+    u_history = [u_start_rl]
+    l_history = [l_start_rl]
+    
+    for _ in range(total_steps):
+        # A. Find Current RLs for this step
+        curr_u_rl = u_level_data[(np.abs(u_content_data - u_mcm)).argmin()]
+        curr_l_rl = l_level_data[(np.abs(l_content_data - l_mcm)).argmin()]
         
-        for m in range(0, total_min, step_min):
-            # Find current levels to check Head Difference
-            curr_u_idx = (np.abs(u_content_data - u_running_mcm)).argmin()
-            curr_u_rl = u_level_data[curr_u_idx]
-            
-            curr_l_idx = (np.abs(l_content_data - l_running_mcm)).argmin()
-            curr_l_rl = l_level_data[curr_l_idx]
-            
-            head_diff = curr_u_rl - curr_l_rl
-            
-            # Rate logic
-            if head_diff > 3.0: rate = 0.17
-            elif 2.0 <= head_diff <= 3.0: rate = 0.15
-            elif 1.5 <= head_diff < 2.0: rate = 0.12
-            else: rate = 0.08
-            
-            step_vol = rate * (step_min / 60)
-            
-            # Update volumes: Water moves from Upper to Lower
-            u_running_mcm -= step_vol
-            l_running_mcm += step_vol
-            gate_vol_total += step_vol
-
-    # --- FINAL RL LOOKUPS ---
-    # Upper Level
-    idx_u_final = (np.abs(u_content_data - u_running_mcm)).argmin()
-    final_u_rl = u_level_data[idx_u_final]
-    
-    # Lower Level
-    idx_l_final = (np.abs(l_content_data - l_running_mcm)).argmin()
-    final_l_rl = l_level_data[idx_l_final]
-
-    # --- 5. RESULTS DISPLAY ---
-    st.divider()
-    res1, res2 = st.columns(2)
-    
-    with res1:
-        st.header("🏁 Upper Lake")
-        st.metric("Final Level", f"{final_u_rl:.3f} m")
-        st.write(f"Final Volume: **{u_running_mcm:.3f} MCM**")
+        # B. Calculate Dynamic Head
+        head_diff = curr_u_rl - curr_l_rl
         
-    with res2:
-        st.header("🏁 Lower Reservoir")
-        st.metric("Final Level", f"{final_l_rl:.3f} m")
-        st.write(f"Final Volume: **{l_running_mcm:.3f} MCM**")
+        # C. Determine Gate Transfer Rate (MCM/hr)
+        if not gate_is_open:
+            transfer_rate = 0.0
+        elif head_diff > 3.0:
+            transfer_rate = 0.17
+        elif 2.0 <= head_diff <= 3.0:
+            transfer_rate = 0.15
+        elif 1.5 <= head_diff < 2.0:
+            transfer_rate = 0.12
+        else:
+            transfer_rate = 0.08
+            
+        # D. Apply Volume Changes (converted to step duration)
+        step_hrs = time_step / 60
+        
+        # Upper Lake: +GenIn -GateOut
+        u_mcm += (u_inflow_rate * step_hrs)
+        u_mcm -= (transfer_rate * step_hrs)
+        
+        # Lower Reservoir: +GateIn -LowerGenOut
+        l_mcm += (transfer_rate * step_hrs)
+        l_mcm -= (l_outflow_rate * step_hrs)
+        
+        gate_vol_total += (transfer_rate * step_hrs)
+        
+        # Track RLs for results
+        u_history.append(u_level_data[(np.abs(u_content_data - u_mcm)).argmin()])
+        l_history.append(l_level_data[(np.abs(l_content_data - l_mcm)).argmin()])
 
-    with st.expander("Detailed Calculation Log"):
-        st.write(f"Upper Gen Addition: **{gen_mus_in * U_PH_CONV:.3f} MCM**")
-        st.write(f"Lower Gen Discharge: **{l_gen_mus_in * L_PH_CONV:.3f} MCM**")
-        if gate_is_open:
-            st.write(f"Total Gate Transfer: **{gate_vol_total:.3f} MCM**")
+    # --- 5. RESULTS ---
+    final_u_rl = u_history[-1]
+    final_l_rl = l_history[-1]
     
+    st.success(f"Simulation completed for {sim_hours} hours.")
+    
+    r1, r2, r3 = st.columns(3)
+    r1.metric("Final Upper RL", f"{final_u_rl:.3f} m", f"{final_u_rl - u_start_rl:.3f}")
+    r2.metric("Final Lower RL", f"{final_l_rl:.3f} m", f"{final_l_rl - l_start_rl:.3f}")
+    r3.metric("Total Gate Transfer", f"{gate_vol_total:.3f} MCM")
+
+    st.subheader("Shift Level Trends")
+    # Combine lists into a dictionary for line_chart
+    chart_data = {
+        "Upper Lake": u_history,
+        "Lower Reservoir": l_history
+    }
+    st.line_chart(chart_data)
+    
+    with st.expander("Show Simulation Log"):
+        st.write(f"Upper Inflow (Gen): **{u_gen_mus * u_conv:.3f} MCM**")
+        st.write(f"Gate Transfer (Out): **{gate_vol_total:.3f} MCM**")
+        st.write(f"Lower Outflow (Gen): **{l_gen_mus * l_conv:.3f} MCM**")
+        
