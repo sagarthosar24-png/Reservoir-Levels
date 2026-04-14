@@ -34,7 +34,7 @@ else:
 
 # --- 4. CALCULATION ---
 if st.button("Calculate Final Levels", type="primary"):
-    # Initial Data Fetch
+    # Initial Data Fetch (Starting volumes)
     idx_u_init = (np.abs(u_level_data - u_level_in)).argmin()
     u_start_mcm = u_content_data[idx_u_init]
     
@@ -43,20 +43,22 @@ if st.button("Calculate Final Levels", type="primary"):
 
     # Constants
     U_PH_CONV = 0.820
-    L_PH_CONV = 9.360 # MCM per MUS for Lower Power House
+    L_PH_CONV = 9.360 
     
-    # 1. Immediate Generation Impacts
+    # 1. Immediate Generation Impacts (Apply these before gate transfer)
     u_running_mcm = u_start_mcm + (gen_mus_in * U_PH_CONV)
     l_running_mcm = l_start_mcm - (l_gen_mus_in * L_PH_CONV)
     
-    # 2. Iterative Gate Transfer Loop
+    # 2. Iterative Gate Transfer Loop (Simulates changing head over time)
     gate_vol_total = 0.0
+    flow_rates_used = []
+
     if gate_is_open and hours_open > 0:
         total_min = int(hours_open * 60)
-        step_min = 10
+        step_min = 5 # Small step ensures we capture level changes accurately
         
         for m in range(0, total_min, step_min):
-            # Find current levels to check Head Difference
+            # Find current RLs based on the updated volumes to check Head Difference
             curr_u_idx = (np.abs(u_content_data - u_running_mcm)).argmin()
             curr_u_rl = u_level_data[curr_u_idx]
             
@@ -65,25 +67,35 @@ if st.button("Calculate Final Levels", type="primary"):
             
             head_diff = curr_u_rl - curr_l_rl
             
-            # Rate logic
-            if head_diff > 3.0: rate = 0.17
-            elif 2.0 <= head_diff <= 3.0: rate = 0.15
-            elif 1.5 <= head_diff < 2.0: rate = 0.12
-            else: rate = 0.08
+            # Rate logic: Determine discharge for this 5-minute slice
+            if head_diff > 3.0: 
+                current_rate = 0.17
+            elif 2.0 <= head_diff <= 3.0: 
+                current_rate = 0.15
+            elif 1.5 <= head_diff < 2.0: 
+                current_rate = 0.12
+            elif head_diff > 0:
+                current_rate = 0.08
+            else:
+                current_rate = 0.00 # Water won't flow uphill
             
-            step_vol = rate * (step_min / 60)
+            flow_rates_used.append(current_rate)
             
-            # Update volumes: Water moves from Upper to Lower
+            # Calculate volume moved in this step (Rate * Time)
+            step_vol = current_rate * (step_min / 60)
+            
+            # Move water from Upper to Lower
             u_running_mcm -= step_vol
             l_running_mcm += step_vol
             gate_vol_total += step_vol
 
+    # Calculate Average Discharge for reporting
+    avg_discharge = np.mean(flow_rates_used) if flow_rates_used else 0.0
+
     # --- FINAL RL LOOKUPS ---
-    # Upper Level
     idx_u_final = (np.abs(u_content_data - u_running_mcm)).argmin()
     final_u_rl = u_level_data[idx_u_final]
     
-    # Lower Level
     idx_l_final = (np.abs(l_content_data - l_running_mcm)).argmin()
     final_l_rl = l_level_data[idx_l_final]
 
@@ -106,4 +118,6 @@ if st.button("Calculate Final Levels", type="primary"):
         st.write(f"Lower Gen Discharge: **{l_gen_mus_in * L_PH_CONV:.3f} MCM**")
         if gate_is_open:
             st.write(f"Total Gate Transfer: **{gate_vol_total:.3f} MCM**")
-                                 
+            st.write(f"Average Discharge Rate: **{avg_discharge:.3f} MCM/Hr**")
+            st.info("The average discharge accounts for the dropping head as levels equalize over time.")
+            
